@@ -5,10 +5,6 @@ from src.cumulative_dev_factors import cumulative_dev_factors
 from src.triangle import initial_triangle, load_data
 from src.vol_weighted_factors import vol_weighted_factors
 
-COMPANY = "State Farm Mut Grp"
-VALUATION_YEAR = 2007
-DATA_PATH = "data/ppauto.csv"
-
 
 def test_matches_library():
     data = load_data()
@@ -16,7 +12,7 @@ def test_matches_library():
     ldfs = vol_weighted_factors(triangle)
     cdfs = cumulative_dev_factors(ldfs)
 
-    mine, my_predicted_total_reserve = chain_ladder(triangle, cdfs)
+    mine, _ = chain_ladder(triangle, cdfs)
 
     cl_triangle = cl.Triangle(
         data,

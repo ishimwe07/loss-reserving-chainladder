@@ -17,8 +17,6 @@ def load_data():
 
 
 def initial_triangle():
-    claims_data = pd.read_csv(DATA_PATH)
-
     company_claims = load_data()
 
     triangle = company_claims.pivot_table(

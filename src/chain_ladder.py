@@ -1,5 +1,7 @@
 import pandas as pd
 
+NO_TAIL_FACTOR = 1.0
+
 
 def chain_ladder(triangle, cdfs):
     result = []
@@ -7,7 +9,7 @@ def chain_ladder(triangle, cdfs):
         latest_lag = row.last_valid_index()
         latest = row[latest_lag]
 
-        cdf = cdfs.get(latest_lag, 1.0)
+        cdf = cdfs.get(latest_lag, NO_TAIL_FACTOR)
 
         ultimate = latest * cdf
         reserve = ultimate - latest
