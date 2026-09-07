@@ -1,15 +1,18 @@
 import pandas as pd
 
-claimsData = pd.read_csv("data/ppauto.csv")
-
+COMPANY = 'State Farm Mut Grp'
+VALUATION_YEAR = 2007
+DATA_PATH = "data/ppauto.csv"
 
 def initial_triangle():
-    non_square_claims_data = claimsData[
-        (claimsData['GRNAME'] == 'State Farm Mut Grp') &
-        (claimsData['DevelopmentYear'] <= 2007)
+    claims_data = pd.read_csv(DATA_PATH)
+
+    # Restrict to one company, as at the 2007 valuation date
+    non_square_claims_data = claims_data[
+        (claims_data['GRNAME'] == COMPANY) &
+        (claims_data['DevelopmentYear'] <= VALUATION_YEAR)
         ]
 
-    # Keep only the upper triangle(nonSquareClaimsData)
     triangle = non_square_claims_data.pivot_table(
         index='AccidentYear',
         columns='DevelopmentLag',
