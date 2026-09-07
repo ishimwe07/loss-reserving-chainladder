@@ -4,18 +4,18 @@ import pandas as pd
 def chain_ladder(triangle, cdfs):
     result = []
     for year, row in triangle.iterrows():
-        ultimate_lag = row.last_valid_index()
-        latest = row[ultimate_lag]
+        latest_lag = row.last_valid_index()
+        latest = row[latest_lag]
 
-        cdf = cdfs.get(ultimate_lag, 1.0)
+        cdf = cdfs.get(latest_lag, 1.0)
 
         ultimate = latest * cdf
-        reserve = ultimate - row[ultimate_lag]
+        reserve = ultimate - latest
 
         result.append({
             "Year": year,
-            "CDF": cdf,
             "Latest": latest,
+            "CDF": cdf,
             "Ultimate": ultimate,
             "Reserve": reserve
         })

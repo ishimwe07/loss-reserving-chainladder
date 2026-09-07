@@ -1,6 +1,6 @@
 import pandas as pd
 
-def volume_weighted_factors(triangle):
+def vol_weighted_factors(triangle):
     factors = {}
     lags = triangle.columns
 

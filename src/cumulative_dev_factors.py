@@ -1,3 +1,3 @@
-def cumulative_dev_factor(factors):
+def cumulative_dev_factors(factors):
     cdfs = factors.iloc[::-1].cumprod().iloc[::-1]
     return cdfs
