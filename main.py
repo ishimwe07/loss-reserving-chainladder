@@ -4,6 +4,7 @@ from src.vol_weighted_factors import vol_weighted_factors
 from src.cumulative_dev_factors import cumulative_dev_factors
 from src.chain_ladder import chain_ladder
 from src.backtest import backtest
+from src.plots import plot_development_factors
 
 pd.set_option("display.float_format", "{:,.2f}".format)
 
@@ -22,6 +23,8 @@ def main():
     print(f"\nThis table compare estimates and actual amounts paid\n", actual_and_estimates)
     print(f"\nThis is the Differences over whole period", differences_over_whole_period)
     print(f"\nThis is the Error over whole period", error_over_whole_period)
+
+    plot_development_factors(ldfs, "outputs/development_factors.png")
 
     return table, total
 
