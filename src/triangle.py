@@ -5,13 +5,13 @@ VALUATION_YEAR = 2007
 DATA_PATH = "data/ppauto.csv"
 
 
-def load_data():
-    claims_data = pd.read_csv(DATA_PATH)
+def load_data(valuation_year=VALUATION_YEAR):
+    claims_data = pd.read_csv(DATA_PATH, dtype={"CumPaidLoss": float})
+    company_claims = claims_data[claims_data['GRNAME'] == COMPANY]
 
-    # Restrict to one company, as at the 2007 valuation year
-    company_claims = claims_data[
-        (claims_data['GRNAME'] == COMPANY) &
-        (claims_data['DevelopmentYear'] <= VALUATION_YEAR)]
+    if valuation_year is not None:
+        company_claims = company_claims[
+            company_claims['DevelopmentYear'] <= valuation_year]
 
     return company_claims
 
